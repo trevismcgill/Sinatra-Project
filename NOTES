@@ -1,0 +1,21 @@
+Flyover Project
+
+Board Game Collection
+Allows a user to crud board games
+
+Models- User, Board Games
+    User has_many BG's
+        attr- email & password
+    BG's belongs_to user
+        attr- title, number of players, genre, & user id
+
+Views-
+
+Controllers-
+    Application Controller
+        helper methods and session/config stuff
+    User Controller
+        responsible for signing up, logging in, and crud of user model
+    Board Game Controller
+        responsible for crud of board game model
+
