@@ -3,6 +3,7 @@ class CreateBoardGames < ActiveRecord::Migration
     create_table :board_games do |t|
       t.string :title
       t.string :num_of_players
+      t.string :genre
       t.integer :user_id
     
 
