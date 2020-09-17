@@ -2,15 +2,15 @@ require 'pry'
 class UserController < ApplicationController
     
     get '/users/:slug' do
-        @user = User.find_by_slug(params[:slug])
-        erb :'users/#PROPER VIEW GOES HERE'
+        @user = User.find_by(params[:slug])
+        erb :'users/show'
     end
     
     get "/signup" do
         if !logged_in?
         erb :"/users/signup"
         else
-        redirect "/PROPER ROUTE"
+        redirect "/home"
       end
     end
         
@@ -18,7 +18,7 @@ class UserController < ApplicationController
     @user = User.new(params)
         if @user.save
           session[:user_id] = @user.id
-          redirect "/PROPER ROUTE"
+          redirect "/home"
         else
           redirect "/signup"
     end   
@@ -28,7 +28,7 @@ class UserController < ApplicationController
         if !logged_in?
         erb :"/users/login"
         else
-        redirect "/PROPER ROUTE"
+        redirect "/home"
         end
     end
     
@@ -36,9 +36,9 @@ class UserController < ApplicationController
         @user = User.find_by(email: params[:email])
         if @user && @user.authenticate(params[:password])
             session[:user_id] = @user.id
-            redirect "/PROPER ROUTE"
+            redirect "/home"
         else
-            redirect to "/PROPER ROUTE"
+            redirect to "/signup"
         end
     end
 

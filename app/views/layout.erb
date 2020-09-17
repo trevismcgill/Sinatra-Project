@@ -19,6 +19,15 @@
         <%= yield %>
 
       <footer class="branding">
+      <%if logged_in?%>
+        <a href="/logout">Log Out</a>
+        <br>
+      <%elsif !logged_in?%>
+        <a href="/login">Login</a>
+        <br>
+        <a href="/signup">Sign Up</a>
+      <%end%>
+       </footer>
         <small>&copy; 2020 <strong>SinatraProject</strong></small>
       </footer>
     </div>
