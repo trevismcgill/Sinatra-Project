@@ -1,7 +1,7 @@
 require 'pry'
 
 class BoardGameController < ApplicationController
-    get "/board-games" do
+    get "/boardgames" do
         # binding.pry
         if logged_in?
             erb :index
@@ -10,7 +10,7 @@ class BoardGameController < ApplicationController
         end
     end
 
-    get "/board-games/new" do
+    get "/boardgames/new" do
         if logged_in?
             erb :"/board_games/new"
         else
@@ -18,18 +18,18 @@ class BoardGameController < ApplicationController
         end
     end
 
-    post "/board-games" do
+    post "/boardgames" do
         if logged_in?
         @bg = BoardGame.new(params)
-        current_user.tweets << @bg
+        current_user.board_games << @bg
         current_user.save
-        redirect "/board-games/new"
+        redirect "/users/#{current_user.username.slug}"
         else
         redirect "/"
         end
     end
 
-    get "/board-games/:id" do
+    get "/boardgames/:id" do
         if logged_in?
             @bg = BoardGame.find(params[:id])
             erb :"/board_games/show"
@@ -38,13 +38,13 @@ class BoardGameController < ApplicationController
         end
     end
 
-    get '/board-games/:id/edit' do
+    get '/boardgames/:id/edit' do
         if logged_in?
           @bg = BoardGame.find_by_id(params[:id])
           if @bg && @bg.user == current_user
             erb :'board_games/edit'
           else
-            redirect to '/board-games'
+            redirect to '/boardgames'
           end
         else
           redirect to '/login'
@@ -54,20 +54,20 @@ class BoardGameController < ApplicationController
       #CHECK THIS
       #VVVVVVVVVVVV
     
-    patch '/board-games/:id' do
+    patch '/boardgames/:id' do
         if logged_in?
           if params[:content] == ""
-            redirect to "/board-games/#{params[:id]}/edit"
+            redirect to "/boardgames/#{params[:id]}/edit"
           else
             @bg = BoardGame.find_by_id(params[:id])
             if @bg && @bg.user == current_user
               if @bg.update(content: params[:content])
-                redirect to "/board-games/#{@bg.id}"
+                redirect to "/boardgames/#{@bg.id}"
               else
-                redirect to "/board-games/#{@bg.id}/edit"
+                redirect to "/boardgames/#{@bg.id}/edit"
               end
             else
-              redirect to '/board-games'
+              redirect to '/boardgames'
             end
           end
         else
@@ -75,13 +75,13 @@ class BoardGameController < ApplicationController
         end
     end
     
-      delete '/board-games/:id/delete' do
+      delete '/boardgames/:id/delete' do
         if logged_in?
           @bg = BoardGame.find_by_id(params[:id])
           if @bg && @bg.user == current_user
             @bg.delete
           end
-          redirect to '/board-games'
+          redirect to '/boardgames'
         else
           redirect to '/login'
         end

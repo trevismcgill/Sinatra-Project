@@ -1,1 +1,10 @@
-<h1></h1>
+<h1>Hello <%=@user.username%></h1>
+
+<p>Your email is <%=@user.email%></p>
+
+<p><%@user.board_games.each do |bg|%>
+    <%=bg.title%>
+    <%end%>
+
+<a href="/boardgames/new"><button>Add Board Game</button></a>
+
