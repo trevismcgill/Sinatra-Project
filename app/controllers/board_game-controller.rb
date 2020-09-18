@@ -56,13 +56,13 @@ class BoardGameController < ApplicationController
     
     patch '/boardgames/:id' do
         if logged_in?
-          if params[:content] == ""
+          if params[:title] == ""
             redirect to "/boardgames/#{params[:id]}/edit"
           else
             @bg = BoardGame.find_by_id(params[:id])
             if @bg && @bg.user == current_user
-              if @bg.update(content: params[:content])
-                redirect to "/boardgames/#{@bg.id}"
+              if @bg.update(title: params[:title], num_of_players: params[:num_of_players], genre: params[:genre])
+                redirect to "/users/#{current_user.slug}"
               else
                 redirect to "/boardgames/#{@bg.id}/edit"
               end

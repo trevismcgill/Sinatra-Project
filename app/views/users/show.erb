@@ -5,6 +5,7 @@
 <p><%@user.board_games.each do |bg|%>
     <ul>
     <li><a href="/boardgames/<%=bg.id%>"><%=bg.title%></a>
+    <a href="/boardgames/<%=bg.id%>/edit"><button>Edit</button></a>
     <form method="post" action="/boardgames/<%=bg.id%>/delete">
     <input id="hidden" type="hidden" name="_method" value="DELETE">
     <input type="submit" value="Delete">

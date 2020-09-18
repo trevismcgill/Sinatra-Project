@@ -1,1 +1,14 @@
 <h1>EDIT BOARD GAME HERE</h1>
+<br>
+<form method="post" action="/boardgames/<%=@bg.id%>">
+    <input id="hidden" type="hidden" name="_method" value="patch">
+    <ul>
+        <li><input type="text" id="boardgame_title" name="title" value="<%=@bg.title%>"></li>
+        <br>
+        <li><input type="text" id="boardgame_players" name="num_of_players" value="<%=@bg.num_of_players%>"></li>
+        <br>
+        <li><input type="text" id="boardgame_genre" name="genre" value="<%=@bg.genre%>"></li>
+        <br>
+        <input type="submit" value="Edit">
+    </ul>
+</form>
