@@ -4,7 +4,7 @@ class BoardGameController < ApplicationController
     get "/boardgames" do
         # binding.pry
         if logged_in?
-            erb :index
+            erb :"/board_games/index"
         else
             redirect "/login"
         end
@@ -79,7 +79,7 @@ class BoardGameController < ApplicationController
         if logged_in?
           @bg = BoardGame.find_by_id(params[:id])
           if @bg && @bg.user == current_user
-            @bg.delete
+            @bg.destroy
           end
           redirect to '/boardgames'
         else

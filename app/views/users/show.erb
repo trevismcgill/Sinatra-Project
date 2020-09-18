@@ -4,11 +4,16 @@
 
 <p><%@user.board_games.each do |bg|%>
     <ul>
-    <li><%=bg.title%>
-    <a href="/boardgames/<%=bg.id%>/delete"><button>Delete</button></a></li>
+    <li><a href="/boardgames/<%=bg.id%>"><%=bg.title%></a>
+    <form method="post" action="/boardgames/<%=bg.id%>/delete">
+    <input id="hidden" type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete">
+    </form>
     <br>
     <%end%>
     </ul>
 <br>
+
+
 <a href="/boardgames/new"><button>Add Board Game</button></a>
 

@@ -20,6 +20,8 @@
 
       <footer class="branding">
       <%if logged_in?%>
+        <a href= "/users/<%=current_user.slug%>">Account Page</a>
+        <br>
         <a href="/logout">Log Out</a>
         <br>
       <%elsif !logged_in?%>
