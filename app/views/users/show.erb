@@ -3,8 +3,12 @@
 <p>Your email is <%=@user.email%></p>
 
 <p><%@user.board_games.each do |bg|%>
-    <%=bg.title%>
+    <ul>
+    <li><%=bg.title%>
+    <a href="/boardgames/<%=bg.id%>/delete"><button>Delete</button></a></li>
+    <br>
     <%end%>
-
+    </ul>
+<br>
 <a href="/boardgames/new"><button>Add Board Game</button></a>
 
