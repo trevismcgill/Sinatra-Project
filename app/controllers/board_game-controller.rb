@@ -4,6 +4,7 @@ class BoardGameController < ApplicationController
     get "/boardgames" do
         # binding.pry
         if logged_in?
+          @bg = BoardGame.all
             erb :"/board_games/index"
         else
             redirect "/login"
@@ -44,9 +45,11 @@ class BoardGameController < ApplicationController
           if @bg && @bg.user == current_user
             erb :'board_games/edit'
           else
+            flash[:alert] = "You are not the owner of that game!"
             redirect to '/boardgames'
           end
         else
+          flash[:notice] = "You must be logged in to edit games."
           redirect to '/login'
         end
       end
@@ -67,10 +70,12 @@ class BoardGameController < ApplicationController
                 redirect to "/boardgames/#{@bg.id}/edit"
               end
             else
+              flash[:alert] = "You are not the owner of that game!"
               redirect to '/boardgames'
             end
           end
         else
+          flash[:notice] = "You must be logged in to edit games."
           redirect to '/login'
         end
     end
@@ -81,8 +86,10 @@ class BoardGameController < ApplicationController
           if @bg && @bg.user == current_user
             @bg.destroy
           end
+          flash[:alert] = "You are not the owner of that game!"
           redirect to '/boardgames'
         else
+          flash[:notice] = "You must be logged in to delete games."
           redirect to '/login'
         end
       end

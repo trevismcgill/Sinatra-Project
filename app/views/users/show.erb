@@ -1,10 +1,13 @@
-<h1>Hello <%=@user.username%></h1>
-
-<p>Your email is <%=@user.email%></p>
+<%if current_user.id == @user.id%>
+    <h1>Hello <%=@user.username%></h1>
+    <p>Your email is <%=@user.email%></p>
+<%else%>
+    <h1><%=@user.username%>'s page</h1>
+<%end%>
 
 <p><%@user.board_games.each do |bg|%>
     <ul>
-    <li><a href="/boardgames/<%=bg.id%>"><%=bg.title%></a>
+    <li><a href="/boardgames/<%=bg.id%>"><%=bg.title%></a></li>
     <a href="/boardgames/<%=bg.id%>/edit"><button>Edit</button></a>
     <form method="post" action="/boardgames/<%=bg.id%>/delete">
     <input id="hidden" type="hidden" name="_method" value="DELETE">

@@ -1,6 +1,16 @@
 require 'pry'
 class UserController < ApplicationController
     
+    get "/boardgames" do
+        # binding.pry
+        if logged_in?
+          @bg = BoardGame.all
+            erb :"/board_games/index"
+        else
+            redirect "/login"
+        end
+    end
+
     get '/users/:slug' do
         @user = User.find_by_slug(params[:slug])
         erb :'users/show'
@@ -42,12 +52,11 @@ class UserController < ApplicationController
             session[:user_id] = @user.id
             redirect "/home"
         else
-            binding.pry
             if !@user
                 flash[:notice] = "There is no account registered under that email address."
-            redirect to "/signup"
+                redirect to "/login"
             else
-                
+                flash[:notice] = "Password is incorrect"
                 redirect "/login"
             end
         end

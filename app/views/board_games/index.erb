@@ -1,1 +1,7 @@
 <h1>BOARD GAME LIST</h1>
+
+<%@bg.each do |bg|%>
+<ul>
+   <li><h3><a href= "/boardgames/<%=bg.id%>"><%=bg.title%></a></h3></li>
+</ul>
+<%end%>

@@ -3,4 +3,6 @@
 <ul>
 <li><strong>Number of Players:</strong> <%=@bg.num_of_players%></li>
 <li><strong>Style of Game:</strong> <%=@bg.genre%></li>
+
+<strong>Owned by:</strong> <a href= "/users/<%=User.find_by(id: @bg.user_id).slug%>"><%=User.find_by(id: @bg.user_id).username%></a>
 <ul>
