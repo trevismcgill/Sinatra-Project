@@ -19,7 +19,8 @@ Specs:
 #logic checks for user_id == current_user.id
 - [x] Include user input validations
 #certain accepted inputs cannot be blank thanks to presence set to true
-- [ ] BONUS - not required - Display validation failures to user with error message (example form URL e.g. /posts/new)
+- [x] BONUS - not required - Display validation failures to user with error message (example form URL e.g. /posts/new)
+#User receives error messages when taking an unallowed action
 - [x] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
 #See readme in repo
 
