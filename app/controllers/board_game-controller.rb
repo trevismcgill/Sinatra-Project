@@ -56,6 +56,7 @@ class BoardGameController < ApplicationController
     patch '/boardgames/:id' do
         if logged_in?
           if params[:title] == ""
+            flash[:notice] = "Title cannot be blank"
             redirect to "/boardgames/#{params[:id]}/edit"
           else
             @bg = BoardGame.find_by_id(params[:id])
