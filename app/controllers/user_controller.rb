@@ -21,7 +21,7 @@ class UserController < ApplicationController
         erb :"/users/signup"
         else
             flash[:notice] = "You already have an account."
-        redirect "/home"
+        redirect "/"
       end
     end
         
@@ -29,7 +29,8 @@ class UserController < ApplicationController
     @user = User.new(params)
         if @user.save
           session[:user_id] = @user.id
-          redirect "/home"
+          flash[:notice] = "You are now logged in."
+          redirect "/"
         else
             # binding.pry
             flash[:errors] = @user.errors.full_messages
@@ -39,10 +40,10 @@ class UserController < ApplicationController
     
     get "/login" do
         if !logged_in?
-        erb :"/users/login"
+            erb :"/users/login"
         else
             flash[:notice] = "You are already logged in."
-        redirect "/home"
+        redirect "/"
         end
     end
     
@@ -50,7 +51,8 @@ class UserController < ApplicationController
         @user = User.find_by(email: params[:email])
         if @user && @user.authenticate(params[:password])
             session[:user_id] = @user.id
-            redirect "/home"
+            flash[:notice] = "You are now logged in."
+            redirect "/"
         else
             if !@user
                 flash[:notice] = "There is no account registered under that email address."

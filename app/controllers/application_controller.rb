@@ -12,11 +12,6 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    erb :welcome
-  end
-
-  get "/home" do
-    @user = current_user
     erb :home
   end
 

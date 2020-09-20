@@ -5,4 +5,17 @@
 <li><strong>Style of Game:</strong> <%=@bg.genre%></li>
 
 <strong>Owned by:</strong> <a href= "/users/<%=User.find_by(id: @bg.user_id).slug%>"><%=User.find_by(id: @bg.user_id).username%></a>
+
+<%if current_user.id == @bg.user_id%>
+        <br>
+        <br>  
+        <a href="/boardgames/<%=@bg.id%>/edit"><button>Edit</button></a>
+        <form method="post" action="/boardgames/<%=@bg.id%>/delete">
+        <input id="hidden" type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+        </form>
+        <br>
+        
+    <%else%>
+    <%end%>
 <ul>

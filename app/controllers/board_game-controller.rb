@@ -2,7 +2,6 @@ require 'pry'
 
 class BoardGameController < ApplicationController
     get "/boardgames" do
-        # binding.pry
         if logged_in?
           @bg = BoardGame.all
             erb :"/board_games/index"
@@ -53,9 +52,6 @@ class BoardGameController < ApplicationController
           redirect to '/login'
         end
       end
-
-      #CHECK THIS
-      #VVVVVVVVVVVV
     
     patch '/boardgames/:id' do
         if logged_in?
