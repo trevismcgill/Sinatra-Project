@@ -2,22 +2,26 @@
     <h1>Hello <%=@user.username%></h1>
     <p>Your email is <%=@user.email%></p>
 <%else%>
-    <h1><%=@user.username%>'s page</h1>
+    <h1><%=@user.username%>'s Board Games</h1>
 <%end%>
 
 <p><%@user.board_games.each do |bg|%>
     <ul>
     <li><a href="/boardgames/<%=bg.id%>"><%=bg.title%></a></li>
-    <a href="/boardgames/<%=bg.id%>/edit"><button>Edit</button></a>
-    <form method="post" action="/boardgames/<%=bg.id%>/delete">
-    <input id="hidden" type="hidden" name="_method" value="DELETE">
-    <input type="submit" value="Delete">
-    </form>
-    <br>
+    <%if current_user.id ==@user.id%>
+        <a href="/boardgames/<%=bg.id%>/edit"><button>Edit</button></a>
+        <form method="post" action="/boardgames/<%=bg.id%>/delete">
+        <input id="hidden" type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+        </form>
+        <br>
+        
+    <%else%>
     <%end%>
+<%end%>
     </ul>
 <br>
-
-
-<a href="/boardgames/new"><button>Add Board Game</button></a>
+<%if current_user.id ==@user.id%>
+    <a href="/boardgames/new"><button>Add Board Game</button></a>
+<%end%>
 

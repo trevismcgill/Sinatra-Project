@@ -34,6 +34,8 @@
 
       <footer class="branding">
       <%if logged_in?%>
+        <a href= "/users">Users</a>
+        <br>
         <a href= "/boardgames">Board Games</a>
         <br>
         <a href= "/users/<%=current_user.slug%>">Account Page</a>

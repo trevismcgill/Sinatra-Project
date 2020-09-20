@@ -1,0 +1,7 @@
+<h1>USERS LIST</h1>
+
+<%@user.each do |user|%>
+<ul>
+   <li><h3><a href= "/users/<%=user.slug%>"><%=user.username%></a></h3></li>
+</ul>
+<%end%>

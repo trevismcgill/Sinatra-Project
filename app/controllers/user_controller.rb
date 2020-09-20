@@ -1,11 +1,11 @@
 require 'pry'
 class UserController < ApplicationController
     
-    get "/boardgames" do
+    get "/users" do
         # binding.pry
         if logged_in?
-          @bg = BoardGame.all
-            erb :"/board_games/index"
+          @user = User.all
+            erb :"/users/index"
         else
             redirect "/login"
         end
