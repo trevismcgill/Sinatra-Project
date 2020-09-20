@@ -22,7 +22,6 @@ class BoardGameController < ApplicationController
         if logged_in?
         @bg = BoardGame.new(params)
         current_user.board_games << @bg
-        # current_user.save
         redirect "/users/#{current_user.slug}"
         else
         redirect "/"
