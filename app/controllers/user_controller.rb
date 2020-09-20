@@ -10,6 +10,7 @@ class UserController < ApplicationController
         if !logged_in?
         erb :"/users/signup"
         else
+            flash[:notice] = "You already have an account."
         redirect "/home"
       end
     end
@@ -20,6 +21,8 @@ class UserController < ApplicationController
           session[:user_id] = @user.id
           redirect "/home"
         else
+            # binding.pry
+            flash[:errors] = @user.errors.full_messages
           redirect "/signup"
     end   
     end
@@ -28,6 +31,7 @@ class UserController < ApplicationController
         if !logged_in?
         erb :"/users/login"
         else
+            flash[:notice] = "You are already logged in."
         redirect "/home"
         end
     end
@@ -38,7 +42,14 @@ class UserController < ApplicationController
             session[:user_id] = @user.id
             redirect "/home"
         else
+            binding.pry
+            if !@user
+                flash[:notice] = "There is no account registered under that email address."
             redirect to "/signup"
+            else
+                
+                redirect "/login"
+            end
         end
     end
 
