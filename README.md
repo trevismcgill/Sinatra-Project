@@ -21,7 +21,7 @@ This application allows you to create an account to build a board game collectio
 
 ## License
 
-The appplication is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+The application is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
 ## Code of Conduct
 
