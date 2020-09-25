@@ -2,10 +2,18 @@ require 'pry'
 class UserController < ApplicationController
     
     get "/users" do
-        # binding.pry
         if logged_in?
           @user = User.all
             erb :"/users/index"
+        else
+            redirect "/login"
+        end
+    end
+
+    get "/users/most-games" do
+        if logged_in?
+            @user = User.all.max_by(1) {|user| user.board_games.length}[0]
+            redirect "/users/#{@user.username}"
         else
             redirect "/login"
         end
@@ -79,3 +87,6 @@ class UserController < ApplicationController
     end
 
 end
+
+#write a custom route so that when a user visits /users/most-games they see the user that has the most game instances associated with them
+#HINT: use the max_by method to help you find the user with the most games 

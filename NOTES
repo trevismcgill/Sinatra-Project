@@ -5,7 +5,7 @@ Allows a user to crud board games
 
 Models- User, Board Games
     User has_many BG's
-        attr- email & password
+        attr- username, email, & password
     BG's belongs_to user
         attr- title, number of players, genre, & user id
 
