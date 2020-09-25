@@ -12,7 +12,7 @@ class UserController < ApplicationController
 
     get "/users/most-games" do
         if logged_in?
-            @user = User.all.max_by(1) {|user| user.board_games.length}[0]
+            @user = User.all.max_by {|user| user.board_games.length}
             redirect "/users/#{@user.username}"
         else
             redirect "/login"
